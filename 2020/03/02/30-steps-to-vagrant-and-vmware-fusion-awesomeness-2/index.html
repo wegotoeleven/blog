@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>30 Steps to Vagrant and VMWare Fusion Awesomeness</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=b3994467fe" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://blog.wegotoeleven.uk/2020/03/02/30-steps-to-vagrant-and-vmware-fusion-awesomeness-2/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://blog.wegotoeleven.uk/2020/03/02/30-steps-to-vagrant-and-vmware-fusion-awesomeness-2/amp/" />
+    
+    <meta property="og:site_name" content="wegotoeleven" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="30 Steps to Vagrant and VMWare Fusion Awesomeness" />
+    <meta property="og:description" content="Vagrant is pretty cool, but of late I&#x27;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an" />
+    <meta property="og:url" content="https://blog.wegotoeleven.uk/2020/03/02/30-steps-to-vagrant-and-vmware-fusion-awesomeness-2/" />
+    <meta property="article:published_time" content="2020-03-02T20:48:06.000Z" />
+    <meta property="article:modified_time" content="2020-03-02T20:48:06.000Z" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="30 Steps to Vagrant and VMWare Fusion Awesomeness" />
+    <meta name="twitter:description" content="Vagrant is pretty cool, but of late I&#x27;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an" />
+    <meta name="twitter:url" content="https://blog.wegotoeleven.uk/2020/03/02/30-steps-to-vagrant-and-vmware-fusion-awesomeness-2/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Stephen Warneford-Bygrave" />
+    <meta name="twitter:site" content="@wegotoeleven" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "wegotoeleven",
+        "logo": "https://blog.wegotoeleven.uk/content/images/2020/01/Artboard-1@4x-1.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Stephen Warneford-Bygrave",
+        "url": "https://blog.wegotoeleven.uk/author/wegotoeleven/",
+        "sameAs": []
+    },
+    "headline": "30 Steps to Vagrant and VMWare Fusion Awesomeness",
+    "url": "https://blog.wegotoeleven.uk/2020/03/02/30-steps-to-vagrant-and-vmware-fusion-awesomeness-2/",
+    "datePublished": "2020-03-02T20:48:06.000Z",
+    "dateModified": "2020-03-02T20:48:06.000Z",
+    "description": "Vagrant is pretty cool, but of late I&#x27;ve been having real issues finding a\nVagrant base box that works with VMware Fusion OOTB. My blogging workflow (used\nto) involve(s) using a Vagrant box with Jekyll to generate a static site on my\nlocal Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren&#x27;t\nup to scratch, so I&#x27;ve decided to figure out how to create my own.\n\nThis guide covers how to create the box and add it to your list of boxes, for\nuse in specifying within a Vagrantfile. ",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.wegotoeleven.uk/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.4" />
+    <link rel="alternate" type="application/rss+xml" title="wegotoeleven" href="https://blog.wegotoeleven.uk/rss/" />
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://blog.wegotoeleven.uk"><img src="/content/images/2020/01/Artboard-1@4x-1.png" alt="wegotoeleven" /></a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://blog.wegotoeleven.uk/">Home</a></li>
+    <li class="nav-mac-admin" role="menuitem"><a href="https://blog.wegotoeleven.uk/tag/mac-admin/">Mac Admin</a></li>
+</ul>
+
+                    <span class="nav-post-title ">30 Steps to Vagrant and VMWare Fusion Awesomeness</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+                    <a class="social-link social-link-tw" href="https://twitter.com/wegotoeleven" title="Twitter" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            </div>
+                <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://blog.wegotoeleven.uk/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+</a>
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post no-image no-image">
+
+            <header class="post-full-header">
+
+
+                <h1 class="post-full-title">30 Steps to Vagrant and VMWare Fusion Awesomeness</h1>
+
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <div class="author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</div>
+                                    <div class="author-info">
+                                        <h2>Stephen Warneford-Bygrave</h2>
+                                        <p>Read <a href="/author/wegotoeleven/">more posts</a> by this author.</p>
+                                    </div>
+                                </div>
+
+                                <a href="/author/wegotoeleven/" class="author-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/wegotoeleven/">Stephen Warneford-Bygrave</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2020-03-02">2 Mar 2020</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 5 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I've been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren't up to scratch, so I've decided to figure out how to create my own.</p>
+<p>This guide covers how to create the box and add it to your list of boxes, for use in specifying within a Vagrantfile. It <em>doesn't</em> cover <a href="https://www.vagrantup.com/intro/index.html">Vagrant fundementals</a>, so I assume that you'll have some basic knowledge in how it works before embarking on this magical quest.</p>
+<ol>
+<li>
+<p>Open VMware Fusion</p>
+</li>
+<li>
+<p>Select “Install from disc or image” and click &quot;Continue&quot;</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/choose-installation-method.png" alt=""></p>
+</li>
+<li>
+<p>Locate the ISO for the distribution you want to install, then select “Open”, and click &quot;Continue&quot;</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/locate-iso.png" alt=""></p>
+</li>
+<li>
+<p>Unselect the checkbox for “Use Easy Install”</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/easy-install.png" alt=""></p>
+</li>
+<li>
+<p>Choose “Customize Settings&quot;</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/customise.png" alt=""></p>
+</li>
+<li>
+<p>Enter a name for the VMware file (name/OSarch, i.e. wegotoeleven/trusty64) and select “Save”</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/choose-vm-name.png" alt=""></p>
+</li>
+<li>
+<p>Customize the VM’s settings:</p>
+<ul>
+<li>
+<p>Turn on Shared Folders</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/shared-folders.png" alt=""></p>
+</li>
+<li>
+<p>Set memory to desired size, at least 1024MB</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-cpu.png" alt=""></p>
+</li>
+<li>
+<p>Change the Networking to &quot;Share with my Mac&quot; (aka NAT)</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-network.png" alt=""></p>
+</li>
+<li>
+<p>Change the disk size to 40 GB and deselect “Split into 2GB files”</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-disk.png" alt=""></p>
+</li>
+<li>
+<p>Turn off the sound card</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-sound.png" alt=""></p>
+</li>
+<li>
+<p>Expand &quot;Advanced USB options&quot; and select &quot;Remove USB Controller&quot;</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-usb.png" alt=""></p>
+</li>
+<li>
+<p>Untick &quot;Share Mac printers with Linux&quot;</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-printers.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Boot the VM, install the Guest OS and customize the following settings when prompted:</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/boot-vm.png" alt=""></p>
+<ul>
+<li>
+<p>Host Name: Same as the second part of the name of the VMware file (i.e. trusty64)</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-hostname.png" alt=""></p>
+</li>
+<li>
+<p>Full Name: vagrant</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-user.png" alt=""></p>
+</li>
+<li>
+<p>User: vagrant</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-username.png" alt=""></p>
+</li>
+<li>
+<p>Password: vagrant</p>
+<p><img src="https://blog.wegotoeleven.uk/content/images/2020/01/configure-password.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Once setup and at the command prompt, login and change the Root Password. When asked, set to <code>vagrant</code></p>
+<pre><code>$ sudo passwd root		
+</code></pre>
+</li>
+<li>
+<p>Update the OS with <code>apt</code> because updates</p>
+<pre><code>$ sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre>
+</li>
+<li>
+<p>Update the Sudoers file with the following to allow the <code>vagrant</code> user <code>sudo</code> rights without having to authenticate. Every. Damn. Time.</p>
+<pre><code>$ sudo visudo &amp;&amp;
+</code></pre>
+</li>
+<li>
+<p>Add the following lines, replacing or amending as necessary</p>
+<pre><code>Defaults !requiretty
+#Defaults !visiblepw
+Defaults env_keep=&quot;SSH_AUTH_SOCK&quot;
+vagrant ALL=NOPASSWD: ALL
+</code></pre>
+</li>
+<li>
+<p>Test the above, by printing the working directory with <code>sudo</code></p>
+<pre><code>$ sudo pwd
+</code></pre>
+</li>
+<li>
+<p>Restart the VM</p>
+<pre><code>$ sudo shutdown -r now
+</code></pre>
+</li>
+<li>
+<p>Make an ssh folder and set the .ssh folder's permissions</p>
+<pre><code>$ mkdir ~/.ssh
+$ chmod 700 ~/.ssh
+</code></pre>
+</li>
+<li>
+<p>Download Vagrant authorised keys from Github and add to the VM</p>
+<pre><code>$ wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+</code></pre>
+</li>
+<li>
+<p>Set permissions on the previously downloaded authorised keys file</p>
+<pre><code>$ chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh`
+</code></pre>
+</li>
+<li>
+<p>Install OpenSSH (because without it this blog post is pointless)</p>
+<pre><code>$ sudo apt install openssh-server -y
+</code></pre>
+</li>
+<li>
+<p>Edit the SSH config file to disable password authentication and enable public key auth</p>
+<pre><code>$ sudo vi /etc/ssh/sshd_config
+</code></pre>
+</li>
+<li>
+<p>Add or modify the following lines</p>
+<pre><code>Port 22
+PubKeyAuthentication yes
+AuthorizedKeysFile %h/.ssh/authorized_keys
+PermitEmptyPasswords no
+PasswordAuthentication no
+</code></pre>
+</li>
+<li>
+<p>Restart SSH service</p>
+<pre><code>$ sudo service ssh restart
+</code></pre>
+</li>
+<li>
+<p>Install VMware Tools. Begin by mounting the VMware Tools by selecting Virtual Machines &gt; Install VMware Tools from the menu bar menu</p>
+<pre><code>$ sudo mkdir -p /mnt/cdrom
+$ sudo mount /dev/cdrom /mnt/cdrom
+$ tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
+$ cd /tmp/vmware-tools-distrib/
+$ sudo ./vmware-install.pl
+</code></pre>
+</li>
+<li>
+<p>Wipe the free space on the VM to stop fragmentation</p>
+<pre><code>$ sudo dd if=/dev/zero of=/EMPTY bs=1M
+$ sudo rm -f /EMPTY
+</code></pre>
+</li>
+<li>
+<p>Shutdown the VM</p>
+<pre><code>$ sudo shutdown -h now
+</code></pre>
+</li>
+<li>
+<p>Navigate to the location of your .vmwarevm file. By default, this location is &quot;~/Virtual Machines/&quot;. <em>Note</em>: Any forward slashes will be translated into colons if the name of the VMware file contained a forward slash &quot;/&quot;.</p>
+<pre><code>$ cd ~&quot;/Virtual Machines/wegotoeleven:xenial64.vmwarevm&quot;
+</code></pre>
+</li>
+<li>
+<p>Create a file named metadata.json, and enter the following contents</p>
+<pre><code>$ vi metadata.json
+</code></pre>
+<pre><code>{&quot;provider&quot;: &quot;vmware_fusion&quot;}
+</code></pre>
+</li>
+<li>
+<p>Create a file named Vagrantfile, and enter the following contents</p>
+<pre><code>$ vi Vagrantfile
+</code></pre>
+<pre><code># -*- mode: ruby -*-
+# vi: set ft=ruby
+
+Vagrant.configure(&quot;2&quot;) do |config|
+    config.vm.provider :vmware_fusion do |v, override|
+        v.gui = false
+    end
+end
+</code></pre>
+</li>
+<li>
+<p>Next, optimize the box to reduce it’s size</p>
+<pre><code>$ &quot;/Applications/VMware Fusion.app/Contents/Library/vmware-vdiskmanager&quot; -d &quot;Virtual Disk.vmdk&quot;
+$ &quot;/Applications/VMware Fusion.app/Contents/Library/vmware-vdiskmanager&quot; -k &quot;Virtual Disk.vmdk&quot;
+</code></pre>
+</li>
+<li>
+<p>There's a setting that Vagrant says needs to be removed as it will &quot;stop overwriting this setting in an upcoming release which may prevent proper networking setup&quot;. :shrug:. Open up the vmx file.</p>
+<pre><code>$ vi wegotoeleven:xenial64.vmx
+</code></pre>
+</li>
+<li>
+<p>Delete the line <code>ethernet0.pcislotnumber = &quot;32&quot;</code> and save.</p>
+</li>
+<li>
+<p>Compress and package el Vagrant box</p>
+<pre><code>$ tar cvzf package.box ./*
+</code></pre>
+</li>
+<li>
+<p>Finally, Add the box to your Vagrant environment. Kind of important.</p>
+<pre><code>$ vagrant box add wegotoeleven/xenial64 package.box
+</code></pre>
+</li>
+<li>
+<p>Go party.</p>
+</li>
+</ol>
+<p>Yeah, I said 30 steps. Nevermind, eh?</p>
+<p>Much love goes out to these guys whose blog posts helped me write mine:<br>
+<a href="https://www.skoblenick.com/vagrant/creating-a-custom-box-from-scratch/">https://www.skoblenick.com/vagrant/creating-a-custom-box-from-scratch/</a><br>
+<a href="https://www.skoblenick.com/vagrant/creating-a-custom-box-from-scratch/">https://blog.engineyard.com/2014/building-a-vagrant-box</a></p>
+<!--kg-card-end: markdown-->
+                </div>
+            </section>
+
+
+      <div id="disqus_thread"></div>
+      <script>
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-wegotoeleven-uk.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+
+                <article class="post-card post tag-mac-admin no-image no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/2020/01/27/30-steps-to-vagrant-and-vmware-fusion-awesomeness/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">Mac Admin</div>
+                <h2 class="post-card-title">30 Steps to Vagrant and VMWare Fusion Awesomeness</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>Vagrant is pretty cool, but of late I've been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        Stephen Warneford-Bygrave
+                    </div>
+            
+                    <a href="/author/wegotoeleven/" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/wegotoeleven/">Stephen Warneford-Bygrave</a></span>
+                <span class="post-card-byline-date"><time datetime="2020-01-27">27 Jan 2020</time> <span class="bull">&bull;</span> 5 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://blog.wegotoeleven.uk">wegotoeleven</a> &copy; 2020</section>
+                <nav class="site-footer-nav">
+                    <a href="https://blog.wegotoeleven.uk">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/wegotoeleven" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="/assets/built/casper.js?v=b3994467fe"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    
+
+</body>
+</html>
