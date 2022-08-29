@@ -50,10 +50,10 @@
     <meta property="og:title" content="30 Steps to Vagrant and VMWare Fusion Awesomeness" />
     <meta property="og:description" content="Vagrant is pretty cool, but of late I&#x27;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an" />
     <meta property="og:url" content="https://blog.wegotoeleven.co.uk/30-steps-to-vagrant-and-vmware-fusion-awesomeness/" />
-    <meta property="article:published_time" content="2020-03-02T00:00:00.000Z" />
-    <meta property="article:modified_time" content="2022-08-29T17:51:16.000Z" />
-    <meta property="article:tag" content="Virtualisation" />
+    <meta property="article:published_time" content="2020-03-02T18:00:00.000Z" />
+    <meta property="article:modified_time" content="2022-08-29T20:43:25.000Z" />
     <meta property="article:tag" content="Mac Admin" />
+    <meta property="article:tag" content="Virtualisation" />
     <meta property="article:tag" content="Technical" />
     
     <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Stephen Warneford-Bygrave" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Virtualisation, Mac Admin, Technical" />
+    <meta name="twitter:data2" content="Mac Admin, Virtualisation, Technical" />
     
     <script type="application/ld+json">
 {
@@ -92,9 +92,9 @@
     },
     "headline": "30 Steps to Vagrant and VMWare Fusion Awesomeness",
     "url": "https://blog.wegotoeleven.co.uk/30-steps-to-vagrant-and-vmware-fusion-awesomeness/",
-    "datePublished": "2020-03-02T00:00:00.000Z",
-    "dateModified": "2022-08-29T17:51:16.000Z",
-    "keywords": "Virtualisation, Mac Admin, Technical",
+    "datePublished": "2020-03-02T18:00:00.000Z",
+    "dateModified": "2022-08-29T20:43:25.000Z",
+    "keywords": "Mac Admin, Virtualisation, Technical",
     "description": "Vagrant is pretty cool, but of late I&#x27;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren&#x27;t up to scratch, so I&#x27;ve decided to figure out how to create my own.\n\n\nThis guide covers how to create the box and add it to your list of boxes, for use in specifying within a Vagrantfile.",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -111,7 +111,7 @@
     <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=9bb99fcbeb.css">
 </head>
 
-<body class="post-template tag-virtualisation tag-mac-admin tag-technical">
+<body class="post-template tag-mac-admin tag-virtualisation tag-technical">
 
 	<div class="nav-header">
 		<nav class="nav-wrapper" aria-label="Main">
@@ -160,7 +160,7 @@
 	<div class="inner">
 		<span class="post-info">
 			<span class="post-type">Article</span>
-			<span class="post-count">Virtualisation</span>
+			<span class="post-count">Mac Admin</span>
 		</span>
 		<h1 class="post-title">30 Steps to Vagrant and VMWare Fusion Awesomeness</h1>
 		<div class="post-meta">
@@ -178,7 +178,7 @@
 </header>
 
 <main class="content" role="main">
-	<article class="post tag-virtualisation tag-mac-admin tag-technical no-image">
+	<article class="post tag-mac-admin tag-virtualisation tag-technical no-image">
 		<div class="inner">
 
 			<section class="post-content">
@@ -245,12 +245,12 @@
 </li>
 <li>
 <p>Once setup and at the command prompt, login and change the Root Password. When asked, set to <code>vagrant</code></p>
-<pre><code class="language-bash">sudo passwd root
+<pre><code class="language-bash">$ sudo passwd root
 </code></pre>
 </li>
 <li>
 <p>Update the OS because updates</p>
-<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade -y
+<pre><code class="language-bash">$ sudo apt update &amp;&amp; sudo apt upgrade -y
 </code></pre>
 </li>
 <li>
@@ -261,72 +261,72 @@ Defaults env_keep=&quot;SSH_AUTH_SOCK&quot;
 </li>
 <li>
 <p>Test. Is the following command outputs the current directory instead of an error, all is good</p>
-<pre><code class="language-bash">sudo pwd
+<pre><code class="language-bash">$ sudo pwd
 </code></pre>
 </li>
 <li>
 <p>Restart VM</p>
-<pre><code class="language-bash">sudo shutdown -r now
+<pre><code class="language-bash">$ sudo shutdown -r now
 </code></pre>
 </li>
 <li>
 <p>Make ssh folder</p>
-<pre><code class="language-bash">mkdir ~/.ssh
+<pre><code class="language-bash">$ mkdir ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Set permissions</p>
-<pre><code class="language-bash">chmod 700 ~/.ssh
+<pre><code class="language-bash">$ chmod 700 ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Download Vagrant authorised keys</p>
-<pre><code class="language-bash">wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+<pre><code class="language-bash">$ wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
 </code></pre>
 </li>
 <li>
 <p>Set permissions on authorised keys file</p>
-<pre><code class="language-bash">chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh
+<pre><code class="language-bash">$ chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Install OpenSSH</p>
-<pre><code class="language-bash">sudo apt install openssh-server -y
+<pre><code class="language-bash">$ sudo apt install openssh-server -y
 </code></pre>
 </li>
 <li>
 <p>Edit the SSH config file</p>
-<pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
+<pre><code class="language-bash">$ sudo nano /etc/ssh/sshd_config
 </code></pre>
 </li>
 <li>
 <p>Restart SSH service</p>
-<pre><code class="language-bash">sudo service ssh restart
+<pre><code class="language-bash">$ sudo service ssh restart
 </code></pre>
 </li>
 <li>
 <p>Install VMware Tools. Begin by mounting the VMware Tools by selecting Virtual Machines &gt; Install VMware Tools from the menu bar menu</p>
-<pre><code class="language-bash">sudo mkdir -p /mnt/cdrom
-sudo mount /dev/cdrom /mnt/cdrom
-tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
-cd /tmp/vmware-tools-distrib/
-sudo ./vmware-install.pl\
+<pre><code class="language-bash">$ sudo mkdir -p /mnt/cdrom
+$ sudo mount /dev/cdrom /mnt/cdrom
+$ tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
+$ cd /tmp/vmware-tools-distrib/
+$ sudo ./vmware-install.pl\
 </code></pre>
 </li>
 <li>
 <p>Wipe the free space on the VM to stop fragmentation</p>
-<pre><code class="language-bash">sudo dd if=/dev/zero of=/EMPTY bs=1M
-sudo rm -f /EMPTY
+<pre><code class="language-bash">$ sudo dd if=/dev/zero of=/EMPTY bs=1M
+$ sudo rm -f /EMPTY
 </code></pre>
 </li>
 <li>
 <p>Shutdown the VM</p>
-<pre><code class="language-bash">sudo shutdown -h now
+<pre><code class="language-bash">$ sudo shutdown -h now
 </code></pre>
 </li>
 <li>
 <p>Navigate to the location of your vmwarevm. By default this location is <code>~/Virtual Machines/</code>.</p>
-<pre><code class="language-bash">cd ~/Virtual Machines/wegotoeleven:xenial64.vmwarevm
+<pre><code class="language-bash">$ cd ~/Virtual Machines/wegotoeleven:xenial64.vmwarevm
 </code></pre>
 <p>Note: Any forward slashes (<code>/</code>) will be translated into colons if the name of the VMware file contains a forward slash</p>
 </li>
@@ -351,18 +351,18 @@ end
 </li>
 <li>
 <p>We next want to optimize the box to reduce it’s size:</p>
-<pre><code>/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -d Virtual\ Disk.vmdk
-/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -k Virtual\ Disk.vmdk
+<pre><code>$ /Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -d Virtual\ Disk.vmdk
+$ /Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -k Virtual\ Disk.vmdk
 </code></pre>
 </li>
 <li>
 <p>Finally compress the box:</p>
-<pre><code class="language-bash">tar cvzf package.box ./
+<pre><code class="language-bash">$ tar cvzf package.box ./
 </code></pre>
 </li>
 <li>
 <p>Add the box to Vagrant</p>
-<pre><code class="language-bash">vagrant box add wegotoeleven/xenial64 package.box
+<pre><code class="language-bash">$ vagrant box add wegotoeleven/xenial64 package.box
 </code></pre>
 </li>
 </ol>
@@ -395,7 +395,7 @@ end
 
 				<aside class="post-tags">
 					<span class="post-info-label">Topic</span>
-					<a href="../tag/virtualisation/index.html">Virtualisation</a> <a href="../tag/mac-admin/index.html">Mac Admin</a> <a href="../tag/technical/index.html">Technical</a>
+					<a href="../tag/mac-admin/index.html">Mac Admin</a> <a href="../tag/virtualisation/index.html">Virtualisation</a> <a href="../tag/technical/index.html">Technical</a>
 				</aside>
 
 			</section>
@@ -410,12 +410,12 @@ end
 			<aside class="post-nav">
 
 
-					<a class="post-nav-prev" href="../using-markdown-to-write-documentation/index.html">
+					<a class="post-nav-prev" href="../puppet-puppetdb-and-puppet-agent/index.html">
 						<section class="post-nav-teaser">
 							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
-							<h2 class="post-nav-title">Using Markdown to write Documentation</h2>
-							<p class="post-nav-excerpt">I absolutely cannot stand writing documentation. Well, that's kind of a lie;&hellip;</p>
-							<p class="post-nav-meta"><time datetime="28-09-2015">28 Sep 2015</time></p>
+							<h2 class="post-nav-title">Puppet puppetdb and puppet agent</h2>
+							<p class="post-nav-excerpt">I like the idea of desired state management systems. You define a&hellip;</p>
+							<p class="post-nav-meta"><time datetime="03-05-2017">03 May 2017</time></p>
 						</section>
 					</a>
 				<div class="clear"></div>

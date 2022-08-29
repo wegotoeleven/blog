@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[wegotoeleven]]></title><description><![CDATA[]]></description><link>https://blog.wegotoeleven.co.uk/</link><image><url>https://blog.wegotoeleven.co.uk/favicon.png</url><title>wegotoeleven</title><link>https://blog.wegotoeleven.co.uk/</link></image><generator>Ghost 5.12</generator><lastBuildDate>Mon, 29 Aug 2022 18:40:09 GMT</lastBuildDate><atom:link href="https://blog.wegotoeleven.co.uk/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[30 Steps to Vagrant and VMWare Fusion Awesomeness]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading</p>]]></description><link>https://blog.wegotoeleven.co.uk/30-steps-to-vagrant-and-vmware-fusion-awesomeness/</link><guid isPermaLink="false">630cfc40e5743e0001ee9bc8</guid><category><![CDATA[Virtualisation]]></category><category><![CDATA[Mac Admin]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 02 Mar 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren&apos;t up to scratch, so I&apos;ve decided to figure out how to create my own.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[wegotoeleven]]></title><description><![CDATA[]]></description><link>https://blog.wegotoeleven.co.uk/</link><image><url>https://blog.wegotoeleven.co.uk/favicon.png</url><title>wegotoeleven</title><link>https://blog.wegotoeleven.co.uk/</link></image><generator>Ghost 5.12</generator><lastBuildDate>Mon, 29 Aug 2022 20:44:01 GMT</lastBuildDate><atom:link href="https://blog.wegotoeleven.co.uk/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[30 Steps to Vagrant and VMWare Fusion Awesomeness]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading</p>]]></description><link>https://blog.wegotoeleven.co.uk/30-steps-to-vagrant-and-vmware-fusion-awesomeness/</link><guid isPermaLink="false">630d24d2e5743e0001ee9c70</guid><category><![CDATA[Mac Admin]]></category><category><![CDATA[Virtualisation]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 02 Mar 2020 18:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren&apos;t up to scratch, so I&apos;ve decided to figure out how to create my own.</p>
 <p>This guide covers how to create the box and add it to your list of boxes, for use in specifying within a Vagrantfile. It doesn&apos;t cover Vagrant fundementals, so I assume that you&apos;ll have some basic knowledge in how it works before embarking on this magical quest.</p>
 <ol>
 <li>
@@ -61,12 +61,12 @@
 </li>
 <li>
 <p>Once setup and at the command prompt, login and change the Root Password. When asked, set to <code>vagrant</code></p>
-<pre><code class="language-bash">sudo passwd root
+<pre><code class="language-bash">$ sudo passwd root
 </code></pre>
 </li>
 <li>
 <p>Update the OS because updates</p>
-<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade -y
+<pre><code class="language-bash">$ sudo apt update &amp;&amp; sudo apt upgrade -y
 </code></pre>
 </li>
 <li>
@@ -77,72 +77,72 @@ Defaults env_keep=&quot;SSH_AUTH_SOCK&quot;
 </li>
 <li>
 <p>Test. Is the following command outputs the current directory instead of an error, all is good</p>
-<pre><code class="language-bash">sudo pwd
+<pre><code class="language-bash">$ sudo pwd
 </code></pre>
 </li>
 <li>
 <p>Restart VM</p>
-<pre><code class="language-bash">sudo shutdown -r now
+<pre><code class="language-bash">$ sudo shutdown -r now
 </code></pre>
 </li>
 <li>
 <p>Make ssh folder</p>
-<pre><code class="language-bash">mkdir ~/.ssh
+<pre><code class="language-bash">$ mkdir ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Set permissions</p>
-<pre><code class="language-bash">chmod 700 ~/.ssh
+<pre><code class="language-bash">$ chmod 700 ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Download Vagrant authorised keys</p>
-<pre><code class="language-bash">wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+<pre><code class="language-bash">$ wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
 </code></pre>
 </li>
 <li>
 <p>Set permissions on authorised keys file</p>
-<pre><code class="language-bash">chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh
+<pre><code class="language-bash">$ chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh
 </code></pre>
 </li>
 <li>
 <p>Install OpenSSH</p>
-<pre><code class="language-bash">sudo apt install openssh-server -y
+<pre><code class="language-bash">$ sudo apt install openssh-server -y
 </code></pre>
 </li>
 <li>
 <p>Edit the SSH config file</p>
-<pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
+<pre><code class="language-bash">$ sudo nano /etc/ssh/sshd_config
 </code></pre>
 </li>
 <li>
 <p>Restart SSH service</p>
-<pre><code class="language-bash">sudo service ssh restart
+<pre><code class="language-bash">$ sudo service ssh restart
 </code></pre>
 </li>
 <li>
 <p>Install VMware Tools. Begin by mounting the VMware Tools by selecting Virtual Machines &gt; Install VMware Tools from the menu bar menu</p>
-<pre><code class="language-bash">sudo mkdir -p /mnt/cdrom
-sudo mount /dev/cdrom /mnt/cdrom
-tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
-cd /tmp/vmware-tools-distrib/
-sudo ./vmware-install.pl\
+<pre><code class="language-bash">$ sudo mkdir -p /mnt/cdrom
+$ sudo mount /dev/cdrom /mnt/cdrom
+$ tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
+$ cd /tmp/vmware-tools-distrib/
+$ sudo ./vmware-install.pl\
 </code></pre>
 </li>
 <li>
 <p>Wipe the free space on the VM to stop fragmentation</p>
-<pre><code class="language-bash">sudo dd if=/dev/zero of=/EMPTY bs=1M
-sudo rm -f /EMPTY
+<pre><code class="language-bash">$ sudo dd if=/dev/zero of=/EMPTY bs=1M
+$ sudo rm -f /EMPTY
 </code></pre>
 </li>
 <li>
 <p>Shutdown the VM</p>
-<pre><code class="language-bash">sudo shutdown -h now
+<pre><code class="language-bash">$ sudo shutdown -h now
 </code></pre>
 </li>
 <li>
 <p>Navigate to the location of your vmwarevm. By default this location is <code>~/Virtual Machines/</code>.</p>
-<pre><code class="language-bash">cd ~/Virtual Machines/wegotoeleven:xenial64.vmwarevm
+<pre><code class="language-bash">$ cd ~/Virtual Machines/wegotoeleven:xenial64.vmwarevm
 </code></pre>
 <p>Note: Any forward slashes (<code>/</code>) will be translated into colons if the name of the VMware file contains a forward slash</p>
 </li>
@@ -167,18 +167,18 @@ end
 </li>
 <li>
 <p>We next want to optimize the box to reduce it&#x2019;s size:</p>
-<pre><code>/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -d Virtual\ Disk.vmdk
-/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -k Virtual\ Disk.vmdk
+<pre><code>$ /Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -d Virtual\ Disk.vmdk
+$ /Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -k Virtual\ Disk.vmdk
 </code></pre>
 </li>
 <li>
 <p>Finally compress the box:</p>
-<pre><code class="language-bash">tar cvzf package.box ./
+<pre><code class="language-bash">$ tar cvzf package.box ./
 </code></pre>
 </li>
 <li>
 <p>Add the box to Vagrant</p>
-<pre><code class="language-bash">vagrant box add wegotoeleven/xenial64 package.box
+<pre><code class="language-bash">$ vagrant box add wegotoeleven/xenial64 package.box
 </code></pre>
 </li>
 </ol>
@@ -188,7 +188,336 @@ end
 <li><a href="https://blog.engineyard.com/2014/building-a-vagrant-box">building-a-vagrant-box</a></li>
 </ul>
 <p>And yeah. I know I said 30.</p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Using Markdown to write Documentation]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know</p>]]></description><link>https://blog.wegotoeleven.co.uk/using-markdown-to-write-documentation/</link><guid isPermaLink="false">630d04aee5743e0001ee9bf9</guid><category><![CDATA[Documentation]]></category><category><![CDATA[Markdown]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 28 Sep 2015 18:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know what I mean.</p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Puppet puppetdb and puppet agent]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>I like the idea of desired state management systems. You define a set of criteria, and your devices will indefinitely match that criteria, returning to the &quot;Desired State&quot; if required. I&apos;ve done this a few times with Jamf Pro, using smart groups, extension attributes and policies</p>]]></description><link>https://blog.wegotoeleven.co.uk/puppet-puppetdb-and-puppet-agent/</link><guid isPermaLink="false">630d2497e5743e0001ee9c5d</guid><category><![CDATA[Technical]]></category><category><![CDATA[Management]]></category><category><![CDATA[Stateless]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Wed, 03 May 2017 21:20:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>I like the idea of desired state management systems. You define a set of criteria, and your devices will indefinitely match that criteria, returning to the &quot;Desired State&quot; if required. I&apos;ve done this a few times with Jamf Pro, using smart groups, extension attributes and policies to &quot;mimic&quot; the functionality of a desired state management system (<a href="https://www.youtube.com/watch?v=XOhZgAPn_CU">which was nice</a>) but I wanted to really get to grips with a system that&apos;s explicitly designed for this purpose. Enter the king of &quot;Desired State&quot; - <em><a href="https://puppet.com">Puppet</a></em>.</p>
+<p>In an effort to get to know Puppet, I need to build out some infrastructure. Yeah, I know there&apos;s a <a href="https://puppet.com/download-learning-vm">learning VM</a> (that&apos;s really awesome, by the way), but I learn by experience. What better way than to build my own.</p>
+<h2 id="assumptions">Assumptions</h2>
+<p>I&apos;m not going to get into the nitty gritty of what puppet actually is and does, and I&apos;m going to assume that if you&apos;re reading this post, you:</p>
+<ol>
+<li>Understand what Desired State is</li>
+<li>Understand (roughly) what Puppet is and can do</li>
+<li>Are poor / nuts, and would rather build and spin up your own servers, rather than using Puppet&apos;s <a href="https://puppet.com/product">Enterprise version</a> (which is still totally viable, but I&apos;m a masochist)</li>
+</ol>
+<p>For the purposes of this example, I will setup 3 VMs and use the following defaults:</p>
+<ul>
+<li>VMware Fusion 8.5.6 to host the VMs
+<ul>
+<li>Network set to custom &quot;vmnet2&quot; network
+<ul>
+<li>NAT</li>
+<li>&quot;Connect Host Mac to this network&quot;</li>
+<li>Provide DHCP, subnet 10.0.1.0/24</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Puppet Server
+<ul>
+<li>Ubuntu 16.04</li>
+<li>2 x CPU Cores</li>
+<li>3072MB Memory</li>
+<li>50GB HDD (thin provisioned)</li>
+<li>Hostname <code>puppet-server</code></li>
+<li>IP Address <code>10.0.1.129</code></li>
+</ul>
+</li>
+<li>Puppet Database Server
+<ul>
+<li>Ubuntu 16.04</li>
+<li>2 x CPU Cores</li>
+<li>3072MB Memory</li>
+<li>50GB HDD (thin provisioned)</li>
+<li>Hostname <code>puppet-db</code></li>
+<li>IP Address <code>10.0.1.130</code></li>
+</ul>
+</li>
+<li>Puppet Test Client
+<ul>
+<li>macOS 10.12.4</li>
+<li>2 x CPU Cores</li>
+<li>8192MB Memory</li>
+<li>50GB HDD (thin provisioned)</li>
+<li>Hostname <code>puppet-client</code></li>
+<li>IP Address <code>10.0.1.128</code></li>
+</ul>
+</li>
+</ul>
+<p>Obviously, if you&apos;re following along with me, feel free to change any of the above defaults, but please make sure you&apos;re changing them in the instructions below.</p>
+<h2 id="network-configuration">Network Configuration</h2>
+<ol>
+<li>
+<p>Spin up your boxes with the above config, and set each device up to allow access via SSH (cause it&apos;s easier like)</p>
+</li>
+<li>
+<p>Rename both servers by editing the hostname file on each device, and adding the desired hostname</p>
+<pre><code class="language-bash">$ sudo vi /etc/hostname
+</code></pre>
+</li>
+<li>
+<p>In addition, add the hostname into the hosts file, pointing to the loopback (<code>127.0.0.1</code>) address under the <code>blog.wegotoeleven.co.uk</code> entry</p>
+<pre><code class="language-bash">$ sudo vi /etc/hosts
+</code></pre>
+<pre><code>127.0.0.1       blog.wegotoeleven.co.uk
+127.0.0.1       puppet-db
+</code></pre>
+</li>
+<li>
+<p>In an environment without proper DNS, do the following:<br>
+4. Set each device with a static IP address. I&apos;m using the IP addresses specified above.</p>
+<pre><code> ```bash
+ $ sudo vi /etc/network/interfaces
+ ```
+ ```
+ # The primary network interface
+ 		auto eth0
+ 		iface eth0 inet static
+ 		address 10.0.0.41
+ 		netmask 255.255.255.0
+ 		network 10.0.0.0
+ 		broadcast 10.0.0.255
+ 		gateway 10.0.0.1
+ 		dns-nameservers 10.0.0.1 8.8.8.8
+ ```
+</code></pre>
+<ul>
+<li>
+<p>Add each device into the each device&apos;s hosts file</p>
+<pre><code class="language-bash">$ sudo vi /etc/hosts
+</code></pre>
+<pre><code>10.0.1.129    puppet-server
+10.0.1.130    puppet-db
+10.0.1.128    puppet-client
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="puppet-server-configuration">Puppet Server Configuration</h2>
+<ol start="8">
+<li>
+<p>Install the NTP service on the Puppet server, because Puppet uses an NTP source when issuing certificates to it&apos;s nodes</p>
+<pre><code class="language-bash">$ sudo apt install ntp
+</code></pre>
+</li>
+<li>
+<p>Add the Puppet repositories to the Puppet Server</p>
+<pre><code class="language-bash">$ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+$ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+$ sudo apt update
+</code></pre>
+</li>
+<li>
+<p>Install <code>puppetserver</code> on the Puppet Server (duh)</p>
+<pre><code class="language-bash">$ sudo apt install puppetserver
+</code></pre>
+</li>
+<li>
+<p>In addition, install the &quot;puppetdb-termini&quot; package to enable the Puppet server to talk to the Puppet DB server</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet resource package puppetdb-termini ensure=latest
+</code></pre>
+</li>
+<li>
+<p>Create the required configuration files on the Puppet server for the connections to the PuppetDB:</p>
+<ul>
+<li>
+<p>routes.yaml:</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppet/routes.yaml
+</code></pre>
+<pre><code class="language-yaml">---
+master:
+    facts:
+        terminus: puppetdb
+        cache: yaml
+</code></pre>
+</li>
+<li>
+<p>puppetdb.conf:</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppet/puppetdb.conf
+</code></pre>
+<pre><code>[main]
+server_urls = https://puppet-db:8081
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Edit puppet.conf</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppet/puppet.conf
+</code></pre>
+<pre><code>[master]
+storeconfigs = true
+storeconfigs_backend = puppetdb
+</code></pre>
+</li>
+<li>
+<p>Ensure the permissions are correct on the Puppet configuration folder</p>
+<pre><code class="language-bash">$ sudo chown -R puppet:puppet $(sudo /opt/puppetlabs/puppet/bin/puppet config print confdir)
+</code></pre>
+</li>
+<li>
+<p>Set <code>puppetserver</code> to start automatically when the system starts</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet resource service puppetserver ensure=running enable=true
+</code></pre>
+</li>
+<li>
+<p>Restart the Server to pickup the above changes.</p>
+</li>
+</ol>
+<h2 id="puppet-db-server-configuration">Puppet DB Server Configuration</h2>
+<ol start="6">
+<li>
+<p>Add the Puppet repositories to the Puppet DB Server</p>
+<pre><code class="language-bash">$ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+$ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+</code></pre>
+</li>
+<li>
+<p>Install the Database backend for PuppetDB</p>
+<pre><code class="language-bash">$ sudo sh -c &apos;echo &quot;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&quot; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&apos;
+$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+$ sudo apt update
+$ sudo apt install postgresql postgresql-contrib
+</code></pre>
+</li>
+<li>
+<p>Setup PostgreSQL on the Puppet DB Server</p>
+<pre><code class="language-bash">$ sudo -u postgres sh
+</code></pre>
+<pre><code class="language-sql">createuser -DRSP puppetdb
+createdb -E UTF8 -O puppetdb puppetdb
+psql puppetdb -c &apos;create extension pg_trgm&apos;
+exit
+</code></pre>
+</li>
+<li>
+<p>Restart the PostgreSQL service</p>
+<pre><code class="language-bash">$ sudo service postgresql restart
+</code></pre>
+</li>
+<li>
+<p>Test PostgreSQL. If this is successful, you&apos;ll be dropped into PostgreSQL. Use <code>\q</code> to exit.</p>
+<pre><code class="language-bash">$ psql -h blog.wegotoeleven.co.uk puppetdb puppetdb
+</code></pre>
+</li>
+<li>
+<p>To configure PuppetDB to use this database, add the following details to the <code>puppetdb</code> database configuration file. In this example, I&apos;m using super secret usernames and passwords. Don&apos;t do this if you&apos;re planning on setting this up in prod.</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppetdb/conf.d/database.ini
+</code></pre>
+<pre><code>subname = //blog.wegotoeleven.co.uk:5432/puppetdb
+username = puppetdb
+password = puppetdb
+</code></pre>
+<p>For the <code>subname</code>, replace the hostname with the DB server&#x2019;s hostname (or <code>blog.wegotoeleven.co.uk</code> if the PostgreSQL service is running on the same server), replace the port with the port on which PostgreSQL is listening (usually 5432), and replace the database with the name of the database you&#x2019;ve created for use with PuppetDB. In addition, uncomment the following sections:</p>
+<pre><code>classname
+subprotocol
+gc-interval
+</code></pre>
+</li>
+</ol>
+<h2 id="connecting-the-servers-together">Connecting the servers together</h2>
+<ol start="20">
+<li>
+<p>Install the Puppet Agent on the Puppet DB Server</p>
+<pre><code class="language-bash">$ sudo apt install puppet-agent
+</code></pre>
+</li>
+<li>
+<p>On the Puppet DB server, set the name of the server that the agent should connect to, replacing the server with the required hostname of the Puppet server</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppet/puppet.conf
+</code></pre>
+<pre><code>server = puppet-server
+</code></pre>
+</li>
+<li>
+<p>Enrol the Puppet DB Server into Puppet</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet agent --test --waitforcert 60
+</code></pre>
+</li>
+<li>
+<p>On the Puppet Server, check to see whether the Puppet DB server has requested a certificate</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet cert --list
+</code></pre>
+</li>
+<li>
+<p>You should see the name of the Puppet DB server, followed by some other stuff. Accept the cert request</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet cert --sign puppet-db
+</code></pre>
+</li>
+<li>
+<p>On the Puppet DB server, install the <code>puppetdb</code> service</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet resource package puppetdb ensure=latest
+</code></pre>
+</li>
+<li>
+<p>Stop the <code>puppetdb</code> service and setup SSL</p>
+<pre><code class="language-bash">$ sudo service puppetdb stop &amp;&amp; sudo /opt/puppetlabs/bin/puppetdb ssl-setup
+</code></pre>
+</li>
+<li>
+<p>Ensure the <code>puppetdb</code> service runs on reboot</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet resource service puppetserver ensure=running enable=true
+</code></pre>
+</li>
+<li>
+<p>Restart the Puppet DB server</p>
+</li>
+<li>
+<p>Check the PuppetDB logs on the Puppet DB server to verify that it&apos;s working</p>
+<pre><code class="language-bash">$ sudo cat /var/log/puppetlabs/puppetdb/puppetdb.log
+</code></pre>
+</li>
+</ol>
+<h2 id="enrolling-a-macos-client">Enrolling a macOS client</h2>
+<ol>
+<li>
+<p>Install the puppet agent onto the Puppet Client, by downloading the specific version as per the OS version, from <a href="https://downloads.puppetlabs.com/mac/">here</a></p>
+</li>
+<li>
+<p>Install the download pkg file. When asked, specify the hostname of the server and the client</p>
+</li>
+<li>
+<p>Open Terminal</p>
+</li>
+<li>
+<p>Edit the Puppet configuration file and add the following contents</p>
+<pre><code class="language-bash">$ sudo vi /etc/puppetlabs/puppet/puppet.conf
+</code></pre>
+<pre><code>[main]
+logdir=/var/log/puppet
+vardir=/var/lib/puppet
+ssldir=/var/lib/puppet/ssl
+#rundir=/var/run/puppet
+factpath=$vardir/lib/facter
+templatedir=$confdir/templates
+
+[master]
+ssl_client_header = SSL_CLIENT_S_DN
+ssl_client_verify_header = SSL_CLIENT_VERIFY
+
+[agent]
+server=puppet-server
+certname=puppet-client
+report=true
+pluginsync=true
+</code></pre>
+</li>
+<li>
+<p>Request a cert from the Puppet Server</p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet agent --waitforcert 60 --test
+</code></pre>
+</li>
+<li>
+<p>On the Puppet DB server, run the log file and keep an eye on it</p>
+<pre><code class="language-bash">$ sudo tail -f /var/log/puppetlabs/puppetdb/puppetdb.log
+</code></pre>
+</li>
+<li>
+<p>Then, on the Puppet Server, check and sign the cert request from <code>puppet-client</code></p>
+<pre><code class="language-bash">$ sudo /opt/puppetlabs/puppet/bin/puppet cert --list
+$ sudo /opt/puppetlabs/puppet/bin/puppet cert --sign puppet-client
+</code></pre>
+</li>
+</ol>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Using Markdown to write Documentation]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know</p>]]></description><link>https://blog.wegotoeleven.co.uk/using-markdown-to-write-documentation/</link><guid isPermaLink="false">630d246be5743e0001ee9c4c</guid><category><![CDATA[Documentation]]></category><category><![CDATA[Markdown]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 28 Sep 2015 18:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know what I mean.</p>
 <p>One of the best things about writing docs that&apos;ll be hosted on-line is that the format will be based upon the site that it lives in. Take Github for example; all documentation up there looks the same. This is because they&apos;re all written in <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. Markdown is a language syntax that standardises formatting which allows a writer to focus on the content that&apos;s being written. If you&apos;ve never seen a Github readme, check out a few:</p>
 <ul>
 <li><a href="https://github.com/munki/munki/blob/master/README.md">Munki</a></li>
@@ -200,12 +529,12 @@ end
 <p>Let&apos;s get one thing straight; Markdown was build for web rendering. So out of the box, there&apos;s no easy way to create a document in Markdown, and export to, say, PDF or Word document.</p>
 <p>That&apos;s where <a href="www.pandoc.org">Pandoc</a> comes in.</p>
 <p>Pandoc is a tool that converts files from one markup format to another. It&apos;s a downloadable application for <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-osx.pkg">Mac</a>, <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-windows.msi">Windows</a> and <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-1-amd64.deb">Linux</a> that runs in the command line in the format of:</p>
-<pre><code class="language-bash">pandoc -f ${input-format} ${input-file} \
+<pre><code class="language-bash">$ pandoc -f ${input-format} ${input-file} \
     -t ${output-format} -o ${output-file}
 </code></pre>
 <p>As standard, it uses a predefined format when it spits out a Word document, that looks not unlike Word&apos;s default <a href="https://normal.dot">normal.dot</a>. However, with the use of the <code>--reference-docx</code> option, you can specify a docx file that contains a custom format in order to format the output of the command.</p>
 <p>For example:</p>
-<pre><code class="language-bash">pandoc -f markdown ~/Desktop/Documentation.markdown \
+<pre><code class="language-bash">$ pandoc -f markdown ~/Desktop/Documentation.markdown \
     -t docx -o ~/Desktop/Documentation.docx \
     --reference-docx ~/Desktop/Reference.docx
 </code></pre>
