@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" class="auto-color">
+<html lang="en">
 <head>
 
-    <title>Stephen Warneford-Bygrave - wegotoeleven</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link rel="stylesheet" type="text/css" href="../../assets/built/screen.css%3Fv=7f44dc4f4f.css" />
+	<title>Stephen Warneford-Bygrave - wegotoeleven</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="canonical" href="index.html" />
+	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css%3Fv=9bb99fcbeb.css" />
+
+	<script>
+			var siteUrl = 'https://blog.wegotoeleven.co.uk';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #cf0010;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #cf0010;
+				  }
+				}
+			</style>
+
+	<link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     
     <meta property="og:site_name" content="wegotoeleven" />
@@ -35,189 +67,156 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.10" />
+    <meta name="generator" content="Ghost 5.12" />
     <link rel="alternate" type="application/rss+xml" title="wegotoeleven" href="../../rss/index.html" />
     
     <script defer src="https://cdn.jsdelivr.net/npm/@tryghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="2befe022a717b3b3936ce8366d" data-styles="https://cdn.jsdelivr.net/npm/@tryghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://blog.wegotoeleven.co.uk/" crossorigin="anonymous"></script>
-    <script defer src="../../public/cards.min.js%3Fv=7f44dc4f4f"></script><style>:root {--ghost-accent-color: #cf0010;}</style>
-    <link rel="stylesheet" type="text/css" href="../../public/cards.min.css%3Fv=7f44dc4f4f.css">
-
+    <script defer src="../../public/cards.min.js%3Fv=9bb99fcbeb"></script><style>:root {--ghost-accent-color: #cf0010;}</style>
+    <link rel="stylesheet" type="text/css" href="../../public/cards.min.css%3Fv=9bb99fcbeb.css">
 </head>
+
 <body class="author-template author-stephen">
-<div class="viewport">
 
-    <header id="gh-head" class="gh-head outer">
-        <nav class="gh-head-inner inner">
-
-            <div class="gh-head-brand">
-                <a class="gh-head-logo no-image" href="../../index.html">
-                        wegotoeleven
-                </a>
-                <div class="gh-head-brand-wrapper">
-                    <button class="gh-search" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
-                    <a class="gh-burger" role="button">
-                        <div class="gh-burger-box">
-                            <div class="gh-burger-inner"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="gh-head-menu">
-                <ul class="nav">
-    <li class="nav-home"><a href="../../index.html">Home</a></li>
-    <li class="nav-about-me"><a href="../../about-me/index.html">About me</a></li>
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="../../index.html"><span>Home</span></a></li>
+		<li class="nav-about-me"><a href="../../about-me/index.html"><span>About me</span></a></li>
 </ul>
 
-            </div>
-            <div class="gh-head-actions">
-                <button class="gh-search" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
-                <div class="gh-social">
-                </div>
-            </div>
-        </nav>
-    </header>
+				<ul class="nav-meta">
+  <!--
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+  -->
+  <!--
+    <li class="nav-subscribe">
+      <a href="#/portal">Subscribe</a>
+    </li>
+  -->
+</ul>
+		</nav>
 
-    <div class="site-content">
-        
-<main id="site-main" class="site-main outer">
-<div class="post-feed inner">
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<!--
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+				-->
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
 
-    <section class="post-card post-card-large">
+	<section class="page-wrapper">
 
+		
 
-        <div class="post-card-content">
-        <div class="post-card-content-link">
-
-                <img class="author-profile-pic" src="../../content/images/2022/08/B865F4E1-87B1-4121-8B73-DE27EB13ADC8_1_201_a-1.jpeg" alt="Stephen Warneford-Bygrave" />
-
-            <header class="post-card-header">
-                <h2 class="post-card-title">Stephen Warneford-Bygrave</h2>
-            </header>
-
-
-            <footer class="author-profile-footer">
-                <div class="author-profile-meta">
-                </div>
-            </footer>
-
-        </div>
-        </div>
-
-    </section>
-
-        
-<article class="post-card post no-image">
-
-
-    <div class="post-card-content">
-
-        <a class="post-card-content-link" href="../../test-2/index.html">
-            <header class="post-card-header">
-                <div class="post-card-tags">
-                </div>
-                <h2 class="post-card-title">
-                    Test 2
-                </h2>
-            </header>
-                <div class="post-card-excerpt">Here's some code:
-
-say "Hello world!"</div>
-        </a>
-
-        <footer class="post-card-meta">
-            <time class="post-card-meta-date" datetime="2022-08-21">Aug 21, 2022</time>
-        </footer>
-
-    </div>
-
-</article>
-        
-<article class="post-card post tag-mac-admin no-image">
+<header class="blog-header">
+	<div class="inner">
+		<div class="archive archive-author box archive-box">
+			<span class="archive-info">
+				<span class="archive-type">Author</span>
+				<span class="archive-count">2 Posts</span>
+			</span>
+			<figure class="archive-avatar avatar">
+					<img src="../../content/images/2022/08/B865F4E1-87B1-4121-8B73-DE27EB13ADC8_1_201_a-1.jpeg" alt="Stephen Warneford-Bygrave" />
+			</figure>
+			<h2 class="archive-title">Stephen Warneford-Bygrave</h2>
+			<span class="archive-links">
+			</span>
+		</div>
 
 
-    <div class="post-card-content">
-
-        <a class="post-card-content-link" href="../../test/index.html">
-            <header class="post-card-header">
-                <div class="post-card-tags">
-                        <span class="post-card-primary-tag">Mac Admin</span>
-                </div>
-                <h2 class="post-card-title">
-                    Test
-                </h2>
-            </header>
-                <div class="post-card-excerpt">Here's a Gist:</div>
-        </a>
-
-        <footer class="post-card-meta">
-            <time class="post-card-meta-date" datetime="2022-08-21">Aug 21, 2022</time>
-        </footer>
-
-    </div>
-
-</article>
-        
-<article class="post-card post tag-news no-image">
+	</div>
+</header>
 
 
-    <div class="post-card-content">
+<div id="index" class="container">
 
-        <a class="post-card-content-link" href="../../coming-soon/index.html">
-            <header class="post-card-header">
-                <div class="post-card-tags">
-                        <span class="post-card-primary-tag">News</span>
-                </div>
-                <h2 class="post-card-title">
-                    Coming soon
-                </h2>
-            </header>
-                <div class="post-card-excerpt">This is wegotoeleven, a brand new site by Stephen Warneford-Bygrave that's just getting started.</div>
-        </a>
+	<main class="content" role="main">
 
-        <footer class="post-card-meta">
-            <time class="post-card-meta-date" datetime="2022-08-21">Aug 21, 2022</time>
-        </footer>
-
-    </div>
-
-</article>
-
-</div>
-</main>
-
-    </div>
-
-    <footer class="site-footer outer">
-        <div class="inner">
-            <section class="copyright"><a href="../../index.html">wegotoeleven</a> &copy; 2022</section>
-            <nav class="site-footer-nav">
-                
-            </nav>
-            <div><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
-        </div>
-    </footer>
+		<div class="extra-pagination">
+	<nav class="pagination" aria-label="Pagination">
+	<div class="inner">
+		<div class="box pagination-box">
+			<span class="pagination-info">Page 1 of 1</span>
+		</div>
+	</div>
+</nav>
 
 </div>
 
 
-<script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous">
-</script>
-<script src="../../assets/built/casper.js%3Fv=7f44dc4f4f"></script>
-<script>
-$(document).ready(function () {
-    // Mobile Menu Trigger
-    $('.gh-burger').click(function () {
-        $('body').toggleClass('gh-head-open');
-    });
-    // FitVids - Makes video embeds responsive
-    $(".gh-content").fitVids();
-});
-</script>
+<article class="post tag-virtualisation tag-mac-admin tag-technical no-image">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../30-steps-to-vagrant-and-vmware-fusion-awesomeness/index.html">30 Steps to Vagrant and VMWare Fusion Awesomeness</a></h2>
+			<span class="post-meta">
+				By
+				<a href="index.html">Stephen Warneford-Bygrave</a>
+				in <a class="post-meta-tag" href="../../tag/virtualisation/index.html">Virtualisation</a>
+				on
+				<time datetime="02-03-2020">02 Mar 2020</time>
+			</span>
+			<p class="post-excerpt">Vagrant is pretty cool, but of late I've been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
+<article class="post tag-documentation tag-markdown tag-technical no-image">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../using-markdown-to-write-documentation/index.html">Using Markdown to write Documentation</a></h2>
+			<span class="post-meta">
+				By
+				<a href="index.html">Stephen Warneford-Bygrave</a>
+				in <a class="post-meta-tag" href="../../tag/documentation/index.html">Documentation</a>
+				on
+				<time datetime="28-09-2015">28 Sep 2015</time>
+			</span>
+			<p class="post-excerpt">I absolutely cannot stand writing documentation. Well, that's kind of a lie; I don't mind the actual writing, but I get too hung up on trying to make it look pretty. If you—the reader—write your own, then maybe you'll know what I mean.
+
+
+One of the best things&hellip;</p>
+		</div>
+	</div>
+</article>
+
+
+<nav class="pagination" aria-label="Pagination">
+	<div class="inner">
+		<div class="box pagination-box">
+			<span class="pagination-info">Page 1 of 1</span>
+		</div>
+	</div>
+</nav>
+
+
+	</main>
+
+</div>
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">wegotoeleven &copy; 2022  <a class="nav-rss" title="RSS" href="../../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<span class="nav-credits"><a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../../assets/js/script.js%3Fv=9bb99fcbeb"></script>
+
+	
+
+	
 
 </body>
 </html>

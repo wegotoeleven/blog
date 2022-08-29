@@ -1,3 +1,215 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[wegotoeleven]]></title><description><![CDATA[]]></description><link>https://blog.wegotoeleven.co.uk/</link><image><url>https://blog.wegotoeleven.co.uk/favicon.png</url><title>wegotoeleven</title><link>https://blog.wegotoeleven.co.uk/</link></image><generator>Ghost 5.10</generator><lastBuildDate>Sun, 21 Aug 2022 20:37:22 GMT</lastBuildDate><atom:link href="https://blog.wegotoeleven.co.uk/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Test 2]]></title><description><![CDATA[<p>Here&apos;s some code:</p><pre><code class="language-bash">say &quot;Hello world!&quot;
-</code></pre>]]></description><link>https://blog.wegotoeleven.co.uk/test-2/</link><guid isPermaLink="false">6302192564981200011268a6</guid><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Sun, 21 Aug 2022 11:38:14 GMT</pubDate><content:encoded><![CDATA[<p>Here&apos;s some code:</p><pre><code class="language-bash">say &quot;Hello world!&quot;
-</code></pre>]]></content:encoded></item><item><title><![CDATA[Test]]></title><description><![CDATA[<p>Here&apos;s a Gist:</p><!--kg-card-begin: html--><script src="https://gist.github.com/wegotoeleven/fddd7603e8310dcc2b96725dc4521831.js"></script><!--kg-card-end: html-->]]></description><link>https://blog.wegotoeleven.co.uk/test/</link><guid isPermaLink="false">630178aba189f90001a05780</guid><category><![CDATA[Mac Admin]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Sun, 21 Aug 2022 00:13:31 GMT</pubDate><content:encoded><![CDATA[<p>Here&apos;s a Gist:</p><!--kg-card-begin: html--><script src="https://gist.github.com/wegotoeleven/fddd7603e8310dcc2b96725dc4521831.js"></script><!--kg-card-end: html-->]]></content:encoded></item><item><title><![CDATA[Coming soon]]></title><description><![CDATA[<p>This is wegotoeleven, a brand new site by Stephen Warneford-Bygrave that&apos;s just getting started. </p>]]></description><link>https://blog.wegotoeleven.co.uk/coming-soon/</link><guid isPermaLink="false">63017779b6134d0001db8138</guid><category><![CDATA[News]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Sun, 21 Aug 2022 00:08:25 GMT</pubDate><content:encoded><![CDATA[<p>This is wegotoeleven, a brand new site by Stephen Warneford-Bygrave that&apos;s just getting started. </p>]]></content:encoded></item></channel></rss>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[wegotoeleven]]></title><description><![CDATA[]]></description><link>https://blog.wegotoeleven.co.uk/</link><image><url>https://blog.wegotoeleven.co.uk/favicon.png</url><title>wegotoeleven</title><link>https://blog.wegotoeleven.co.uk/</link></image><generator>Ghost 5.12</generator><lastBuildDate>Mon, 29 Aug 2022 18:40:09 GMT</lastBuildDate><atom:link href="https://blog.wegotoeleven.co.uk/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[30 Steps to Vagrant and VMWare Fusion Awesomeness]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading</p>]]></description><link>https://blog.wegotoeleven.co.uk/30-steps-to-vagrant-and-vmware-fusion-awesomeness/</link><guid isPermaLink="false">630cfc40e5743e0001ee9bc8</guid><category><![CDATA[Virtualisation]]></category><category><![CDATA[Mac Admin]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 02 Mar 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>Vagrant is pretty cool, but of late I&apos;ve been having real issues finding a Vagrant base box that works with VMware Fusion OOTB. My blogging workflow (used to) involve(s) using a Vagrant box with Jekyll to generate a static site on my local Mac, and then uploading to an S3 bucket. The Vagrant Jekyll boxes weren&apos;t up to scratch, so I&apos;ve decided to figure out how to create my own.</p>
+<p>This guide covers how to create the box and add it to your list of boxes, for use in specifying within a Vagrantfile. It doesn&apos;t cover Vagrant fundementals, so I assume that you&apos;ll have some basic knowledge in how it works before embarking on this magical quest.</p>
+<ol>
+<li>
+<p>Open VMware Fusion</p>
+</li>
+<li>
+<p>Select &#x201C;Install from disc or image&#x201D; and click &quot;Continue&quot;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Select-the-Installation-Method-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Locate the ISO for the distribution you want to install, then select &#x201C;Open&#x201D;, and click &quot;Continue&quot;.<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Create-a-New-Virtual-Machine-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Unselect the checkbox for &#x201C;Use Easy Install&#x201D;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Linux-Easy-Install-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Choose &#x201C;Customize Settings&#x201D;, and enter a name for the VMware file (<code>name/OSarch</code>, i.e. <code>wegotoeleven/trusty64</code>) and select &#x201C;Save&quot;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Share-this-virtual-machine-with-other-users-on-this-Mac-1.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Customise the VM&#x2019;s settings</p>
+<ol>
+<li>Turn on Shared Folders<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Show-All-5.png" alt loading="lazy"></li>
+<li>Set memory to desired size, at least 1024MB<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Show-All-2-3.png" alt loading="lazy"></li>
+<li>Change the Networking to &quot;Share with my Mac&quot; (aka NAT)<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/configured-tc-3.png" alt loading="lazy"></li>
+<li>Change the disk size to 40 GB and deselect &#x201C;Split into 2GB files&#x201D;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Revert-Apply-3.png" alt loading="lazy"></li>
+<li>Turn off the sound card<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/input-Dev-3.png" alt loading="lazy"></li>
+<li>Expand &quot;Advanced USB options&quot; and select &quot;Remove USB Controller&quot;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Show-All-3-3.png" alt loading="lazy"></li>
+<li>Untick &quot;Share Mac printers with Linux&quot;<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/Share-Mac-printers-with-Linux-3.png" alt loading="lazy"></li>
+</ol>
+</li>
+<li>
+<p>Boot the VM, install the Guest OS and customise the following settings when prompted:<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/ubuntu-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Host Name: Same as the second part of the name of the VMware file (i.e. trusty64)<br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/susten-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Full Name: <code>vagrant</code><br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/To-release-your-mouse-press-Control-88-5.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>User: <code>vagrant</code><br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/To-release-your-mouse-press-Control-88-2-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Password: <code>vagrant</code><br>
+<img src="https://blog.wegotoeleven.co.uk/content/images/2022/08/To-release-your-mouse-press-Control-88-3-3.png" alt loading="lazy"></p>
+</li>
+<li>
+<p>Once setup and at the command prompt, login and change the Root Password. When asked, set to <code>vagrant</code></p>
+<pre><code class="language-bash">sudo passwd root
+</code></pre>
+</li>
+<li>
+<p>Update the OS because updates</p>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre>
+</li>
+<li>
+<p>Update the Sudoers file with the following to allow the vagrant user sudo rights without having to authenticate with a password</p>
+<pre><code>#Defaults !visiblepw
+Defaults env_keep=&quot;SSH_AUTH_SOCK&quot;
+</code></pre>
+</li>
+<li>
+<p>Test. Is the following command outputs the current directory instead of an error, all is good</p>
+<pre><code class="language-bash">sudo pwd
+</code></pre>
+</li>
+<li>
+<p>Restart VM</p>
+<pre><code class="language-bash">sudo shutdown -r now
+</code></pre>
+</li>
+<li>
+<p>Make ssh folder</p>
+<pre><code class="language-bash">mkdir ~/.ssh
+</code></pre>
+</li>
+<li>
+<p>Set permissions</p>
+<pre><code class="language-bash">chmod 700 ~/.ssh
+</code></pre>
+</li>
+<li>
+<p>Download Vagrant authorised keys</p>
+<pre><code class="language-bash">wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+</code></pre>
+</li>
+<li>
+<p>Set permissions on authorised keys file</p>
+<pre><code class="language-bash">chmod 600 ~/.ssh/authorized_keys &amp;&amp; chown -R vagrant ~/.ssh
+</code></pre>
+</li>
+<li>
+<p>Install OpenSSH</p>
+<pre><code class="language-bash">sudo apt install openssh-server -y
+</code></pre>
+</li>
+<li>
+<p>Edit the SSH config file</p>
+<pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
+</code></pre>
+</li>
+<li>
+<p>Restart SSH service</p>
+<pre><code class="language-bash">sudo service ssh restart
+</code></pre>
+</li>
+<li>
+<p>Install VMware Tools. Begin by mounting the VMware Tools by selecting Virtual Machines &gt; Install VMware Tools from the menu bar menu</p>
+<pre><code class="language-bash">sudo mkdir -p /mnt/cdrom
+sudo mount /dev/cdrom /mnt/cdrom
+tar xzvf /mnt/cdrom/VMwareTools-9.2.2-893683.tar.gz -C /tmp
+cd /tmp/vmware-tools-distrib/
+sudo ./vmware-install.pl\
+</code></pre>
+</li>
+<li>
+<p>Wipe the free space on the VM to stop fragmentation</p>
+<pre><code class="language-bash">sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
+</code></pre>
+</li>
+<li>
+<p>Shutdown the VM</p>
+<pre><code class="language-bash">sudo shutdown -h now
+</code></pre>
+</li>
+<li>
+<p>Navigate to the location of your vmwarevm. By default this location is <code>~/Virtual Machines/</code>.</p>
+<pre><code class="language-bash">cd ~/Virtual Machines/wegotoeleven:xenial64.vmwarevm
+</code></pre>
+<p>Note: Any forward slashes (<code>/</code>) will be translated into colons if the name of the VMware file contains a forward slash</p>
+</li>
+<li>
+<p>Create a file named <code>metadata.json</code> and enter the following contents:</p>
+<pre><code class="language-json">{
+  &quot;provider&quot;: &quot;vmware_fusion&quot;
+}
+</code></pre>
+</li>
+<li>
+<p>Create a file named <code>Vagrantfile</code> and enter the following contents.</p>
+<pre><code class="language-ruby"># -*- mode: ruby -*-
+# vi: set ft=ruby
+
+Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.provider :vmware_fusion do |v, override|
+    v.gui = false
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>We next want to optimize the box to reduce it&#x2019;s size:</p>
+<pre><code>/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -d Virtual\ Disk.vmdk
+/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager -k Virtual\ Disk.vmdk
+</code></pre>
+</li>
+<li>
+<p>Finally compress the box:</p>
+<pre><code class="language-bash">tar cvzf package.box ./
+</code></pre>
+</li>
+<li>
+<p>Add the box to Vagrant</p>
+<pre><code class="language-bash">vagrant box add wegotoeleven/xenial64 package.box
+</code></pre>
+</li>
+</ol>
+<p>I couldn&apos;t have done this without the following blog posts:</p>
+<ul>
+<li><a href="https://www.skoblenick.com/vagrant/creating-a-custom-box-from-scratch">creating-a-custom-box-from-scratch</a></li>
+<li><a href="https://blog.engineyard.com/2014/building-a-vagrant-box">building-a-vagrant-box</a></li>
+</ul>
+<p>And yeah. I know I said 30.</p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Using Markdown to write Documentation]]></title><description><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know</p>]]></description><link>https://blog.wegotoeleven.co.uk/using-markdown-to-write-documentation/</link><guid isPermaLink="false">630d04aee5743e0001ee9bf9</guid><category><![CDATA[Documentation]]></category><category><![CDATA[Markdown]]></category><category><![CDATA[Technical]]></category><dc:creator><![CDATA[Stephen Warneford-Bygrave]]></dc:creator><pubDate>Mon, 28 Sep 2015 18:00:00 GMT</pubDate><content:encoded><![CDATA[<!--kg-card-begin: markdown--><p>I absolutely cannot stand writing documentation. Well, that&apos;s kind of a lie; I don&apos;t mind the actual writing, but I get too hung up on trying to make it look pretty. If you&#x2014;the reader&#x2014;write your own, then maybe you&apos;ll know what I mean.</p>
+<p>One of the best things about writing docs that&apos;ll be hosted on-line is that the format will be based upon the site that it lives in. Take Github for example; all documentation up there looks the same. This is because they&apos;re all written in <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. Markdown is a language syntax that standardises formatting which allows a writer to focus on the content that&apos;s being written. If you&apos;ve never seen a Github readme, check out a few:</p>
+<ul>
+<li><a href="https://github.com/munki/munki/blob/master/README.md">Munki</a></li>
+<li><a href="https://github.com/autopkg/autopkg/blob/master/ReadMe.md">Autopkg</a></li>
+<li>Docker container for <a href="https://github.com/wegotoeleven/dockerfiles/blob/master/boot2docker-transmission/README.md">Transmission</a></li>
+</ul>
+<p>This blog is also written in markdown. The CSS on this blog is used to apply styles to the various components of a converted markdown document. I&apos;m not going to go into every piece of Markdown syntax as it&apos;s not the point of this post, but hopefully you get the idea.</p>
+<p>So how cool would it be to leverage this when writing printed documentation?</p>
+<p>Let&apos;s get one thing straight; Markdown was build for web rendering. So out of the box, there&apos;s no easy way to create a document in Markdown, and export to, say, PDF or Word document.</p>
+<p>That&apos;s where <a href="www.pandoc.org">Pandoc</a> comes in.</p>
+<p>Pandoc is a tool that converts files from one markup format to another. It&apos;s a downloadable application for <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-osx.pkg">Mac</a>, <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-windows.msi">Windows</a> and <a href="https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-1-amd64.deb">Linux</a> that runs in the command line in the format of:</p>
+<pre><code class="language-bash">pandoc -f ${input-format} ${input-file} \
+    -t ${output-format} -o ${output-file}
+</code></pre>
+<p>As standard, it uses a predefined format when it spits out a Word document, that looks not unlike Word&apos;s default <a href="https://normal.dot">normal.dot</a>. However, with the use of the <code>--reference-docx</code> option, you can specify a docx file that contains a custom format in order to format the output of the command.</p>
+<p>For example:</p>
+<pre><code class="language-bash">pandoc -f markdown ~/Desktop/Documentation.markdown \
+    -t docx -o ~/Desktop/Documentation.docx \
+    --reference-docx ~/Desktop/Reference.docx
+</code></pre>
+<p>This will convert the file &quot;<code>Documentation.markdown</code>&quot; into a Word document called &quot;<code>Documentation.docx</code>&quot;, using the reference file &quot;<code>Reference.docx</code>&quot;</p>
+<p>So, about these reference docx files. &quot;Where can I get them from&quot; I hear you shout? Well, I&apos;ve been rather unsuccessful in my attempts to find any. <a href="assets/2015-09-28-01.doc">So I made my own!</a> Here&apos;s one that looks like a rendered Markdown webpage. Plug this in to the above commands, and your markdown will &quot;accurately&quot; translate into printed documentation!</p>
+<p>If you&apos;re a Markdown writer/user, and you have a hard time focusing on content rather than design, give this a go.</p>
+<!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>
