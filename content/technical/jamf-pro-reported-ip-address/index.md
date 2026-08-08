@@ -3,6 +3,7 @@ title: "Jamf Pro's Reported IP Address fun and games"
 date: 2015-01-01
 categories: ["technical"]
 tags: ["macadmin", "jamf"]
+dateApprox: true
 ---
 
 I had a user with an issue recently where their Mac record in Jamf Pro was not being populated with a correct "Reported IP Address" value when connected to the company's corporate WiFi. The IP address of the WiFi interface would report the correct value on the device and was singable.
