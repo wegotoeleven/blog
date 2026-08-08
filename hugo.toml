@@ -1,0 +1,75 @@
+baseURL = "https://blog.wegotoeleven.xyz/"
+languageCode = "en-gb"
+title = "wegotoeleven"
+theme = "PaperMod"
+paginate = 10
+enableRobotsTXT = true
+enableEmoji = true
+pygmentsUseClasses = true
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  env = "production"
+  title = "wegotoeleven"
+  description = "Technical notes and old travel diaries from wegotoeleven."
+  mainSections = ["technical", "travelling"]
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = true
+  ShowToc = true
+  TocOpen = false
+  comments = false
+  DateFormat = "2 January 2006"
+
+  [params.homeInfoParams]
+    Title = "Hi there \U0001F44B"
+    Content = "Technical write-ups on infra, macOS admin, and homelab stuff, plus an archive of travel diaries from a five-month trip around South East Asia back in 2011."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/wegotoeleven"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "index.xml"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = "monokai"
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[[menu.main]]
+  identifier = "technical"
+  name = "Technical"
+  url = "/technical/"
+  weight = 10
+[[menu.main]]
+  identifier = "travelling"
+  name = "Travelling"
+  url = "/travelling/"
+  weight = 20
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 30
+[[menu.main]]
+  identifier = "search"
+  name = "Search"
+  url = "/search/"
+  weight = 40
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
