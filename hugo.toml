@@ -15,7 +15,7 @@ pygmentsUseClasses = true
   env = "production"
   title = "wegotoeleven"
   description = "Technical notes and old travel diaries from wegotoeleven."
-  mainSections = ["technical", "travelling"]
+  mainSections = ["technical", "papahood", "travelling"]
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = true
@@ -31,7 +31,7 @@ pygmentsUseClasses = true
 
   [params.homeInfoParams]
     Title = "Hi there \U0001F44B"
-    Content = "Technical write-ups on infra, macOS admin, and homelab stuff, plus an archive of travel diaries from a five-month trip around South East Asia back in 2011."
+    Content = "Technical write-ups on infra, macOS admin, and homelab stuff, notes on being a dad, and an archive of travel diaries from a five-month trip around South East Asia back in 2011."
 
   [[params.socialIcons]]
     name = "github"
@@ -55,6 +55,11 @@ pygmentsUseClasses = true
   name = "Technical"
   url = "/technical/"
   weight = 10
+[[menu.main]]
+  identifier = "papahood"
+  name = "Papahood"
+  url = "/papahood/"
+  weight = 15
 [[menu.main]]
   identifier = "travelling"
   name = "Travelling"
